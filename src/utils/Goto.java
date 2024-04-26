@@ -72,108 +72,65 @@ public class Goto {
         backgroundChoose.setFitHeight(580);
         backgroundChoose.setFitWidth(1000);
 
+        Text text = new Text("Choose Your Character");
+        text.setFont(Font.font("Berlin Sans FB Demi", FontWeight.BOLD, 60));
+        text.setFill(Color.WHITE);
+
         VBox mainPage = new VBox();
+        mainPage.setAlignment(Pos.CENTER);
+        mainPage.setSpacing(30);
 
+        HBox line1 = new HBox();
+        line1.setSpacing(50);
+        line1.setAlignment(Pos.CENTER);
 
-        GridPane gridPane = new GridPane();
-        Text ChooseText = GetDisplay.TextText("ChooseCharacter",30,250);
-//        gridPane.add(ChooseText,1,1);
+        HBox line2 = new HBox();
+        line2.setSpacing(50);
+        line2.setAlignment(Pos.CENTER);
 
+        ImageView fightingCat = GetDisplay.ImageImage("Cat/FightingCat.PNG");
+        fightingCat.setFitHeight(100);
+        fightingCat.setFitWidth(100);
 
-        GridPane gridPane2 = new GridPane();
-        ImageView char1 = GetDisplay.ImageImage("Cat/CatLoad.PNG");
-        char1.setFitHeight(100);
-        char1.setFitWidth(100);
+        ImageView knightCat = GetDisplay.ImageImage("Cat/KnightCat.PNG");
+        knightCat.setFitHeight(100);
+        knightCat.setFitWidth(100);
 
-        ImageView char2 = GetDisplay.ImageImage("Cat/CurseCat.PNG");
-        char2.setFitHeight(100);
-        char2.setFitWidth(100);
+        ImageView ninjaCat = GetDisplay.ImageImage("Cat/NinjaCat.PNG");
+        ninjaCat.setFitHeight(100);
+        ninjaCat.setFitWidth(100);
 
-        ImageView char3 = GetDisplay.ImageImage("Cat/DocterCat.png");
-        char3.setFitHeight(100);
-        char3.setFitWidth(100);
+        ImageView catLoad = GetDisplay.ImageImage("Cat/CatLoad.PNG");
+        catLoad.setFitHeight(100);
+        catLoad.setFitWidth(100);
 
-        ImageView char4 = GetDisplay.ImageImage("Cat/FightingCAt.PNG");
-        char4.setFitHeight(100);
-        char4.setFitWidth(100);
+        ImageView curseCat = GetDisplay.ImageImage("Cat/CurseCat.PNG");
+        curseCat.setFitHeight(100);
+        curseCat.setFitWidth(100);
 
-        HBox ListCharP1 = new HBox();
-        HBox CharP1ChooseBFbutton = new HBox();
+        ImageView docterCat = GetDisplay.ImageImage("Cat/DocterCat.PNG");
+        docterCat.setFitHeight(100);
+        docterCat.setFitWidth(100);
 
+        ImageView holyCat = GetDisplay.ImageImage("Cat/HolyCat.PNG");
+        holyCat.setFitHeight(100);
+        holyCat.setFitWidth(100);
 
-        char1.setOnMouseClicked(event -> {
-            ImageView char1Copy = new ImageView();
-            char1Copy.setImage(char1.getImage());
-            char1Copy.setFitHeight(char1.getFitHeight());
-            char1Copy.setFitWidth(char1.getFitWidth());
-            CharP1ChooseBFbutton.getChildren().clear();
-            CharP1ChooseBFbutton.getChildren().add(char1Copy);
-        });
-        char2.setOnMouseClicked(event -> {
-            ImageView char2Copy = new ImageView();
-            char2Copy.setImage(char2.getImage());
-            char2Copy.setFitHeight(char2.getFitHeight());
-            char2Copy.setFitWidth(char2.getFitWidth());
-            CharP1ChooseBFbutton.getChildren().clear();
-            CharP1ChooseBFbutton.getChildren().add(char2Copy);
-        });
-        char3.setOnMouseClicked(event -> {
-            ImageView char3Copy = new ImageView();
-            char3Copy.setImage(char3.getImage());
-            char3Copy.setFitHeight(char3.getFitHeight());
-            char3Copy.setFitWidth(char3.getFitWidth());
-            CharP1ChooseBFbutton.getChildren().clear();
-            CharP1ChooseBFbutton.getChildren().add(char3Copy);
-        });
-        char4.setOnMouseClicked(event -> {
-            ImageView char4Copy = new ImageView();
-            char4Copy.setImage(char4.getImage());
-            char4Copy.setFitHeight(char4.getFitHeight());
-            char4Copy.setFitWidth(char4.getFitWidth());
-            CharP1ChooseBFbutton.getChildren().clear();
-            CharP1ChooseBFbutton.getChildren().add(char4Copy);
-        });
+        ImageView vampireCat = GetDisplay.ImageImage("Cat/VampireCat.PNG");
+        vampireCat.setFitHeight(100);
+        vampireCat.setFitWidth(100);
 
-        //-----------------------------------
-//        char1.setOnMouseClicked(event -> {
-//            ImageView char1Copy = new ImageView();
-//            char1Copy.setImage(char1.getImage());
-//            char1Copy.setFitHeight(char1.getFitHeight());
-//            char1Copy.setFitWidth(char1.getFitWidth());
-//            CharP1ChooseBFbutton.getChildren().add(char1Copy);
-//        });
+        line1.getChildren().addAll(fightingCat, knightCat, ninjaCat, curseCat);
+        line2.getChildren().addAll(docterCat, holyCat, catLoad, vampireCat);
 
-        //-----------------------------------
-        Button ChooseButton = new Button("Choose");
-        ChooseButton.setPrefWidth(70);
-        ChooseButton.setBackground(Background.fill(Color.DARKCYAN));
-        ChooseButton.setTextFill(Color.WHITE);
+        Button button = new Button("Choose");
+        button.setPrefWidth(90);
+        button.setPrefHeight(30);
+        button.setBackground(Background.fill(Color.ORANGE));
+        button.setTextFill(Color.WHITE);
 
-        ChooseButton.setOnAction(event -> {
-            // Check if listP1 is empty or not
-            if (CharP1ChooseBFbutton.getChildren().isEmpty()) {
-                System.out.println("Please select a character first.");
-            } else {
-                // If listP1 is not empty, proceed (assuming further actions)
-                System.out.println("Selected character(s):");
-                ListCharP1.getChildren().add(CharP1ChooseBFbutton);
-//                for (int i = 0; i < ListCharP1.getChildren().size(); i++) {
-//                    // You can access the selected characters here (e.g., for processing)
-//                    System.out.println(ListCharP1.getChildren().get(i));
-//                }
-            }
-        });
-        //-----------------------------------
-
-
-
-
-
-
-        mainPage.getChildren().addAll(ChooseText,char1,char2,char3,char4,ChooseButton,ListCharP1);
-
+        mainPage.getChildren().addAll(text, line1, line2, button);
         StackPane stack = new StackPane(backgroundChoose, mainPage);
-
         rootPane.getChildren().add(stack);
     }
 
