@@ -1,0 +1,21 @@
+.root {
+    -fx-background-image: url('../image/castle.png');
+    -fx-alignment: center;
+}
+
+.choose {
+    -fx-background-image: url('../image/choose.jpg');
+    -fx-alignment: center;
+}
+
+.startButton {
+    -fx-alignment: CENTER;
+}
+
+.chooseCharacter {
+    -fx-background-image: url('../image/choose.jpg')
+}
+
+.vampireCat{
+    -fx-background-image: url('../image/VampireCat.png');
+}

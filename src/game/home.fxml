@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="550.0" prefWidth="1000.0" style="-fx-background-size: 100%;" styleClass="root" stylesheets="@../css/Style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.SceneController">
+    <children>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="443.0" layoutY="419.0" mnemonicParsing="false" onAction="#homeToChoose" prefHeight="51.0" prefWidth="114.0" styleClass="startButton" stylesheets="@../css/Style.css" text="Start">
+            <font>
+                <Font size="23.0" />
+            </font>
+        </Button>
+        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="375.0" layoutY="88.0" prefHeight="71.0" prefWidth="250.0" text="CatCatCat" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="Berlin Sans FB Demi Bold" size="46.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
