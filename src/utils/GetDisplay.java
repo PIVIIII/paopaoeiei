@@ -12,12 +12,15 @@ import java.io.InputStream;
 public class GetDisplay {
 
 
-    public static ImageView ImageImage(String imagePath) {
+    public static ImageView ImageImage(String imagePath,int Height,int Width) {
         ImageView image;
         String classLoaderPath = ClassLoader.getSystemResource(imagePath).toString();
         image = new ImageView(classLoaderPath);
+        image.setFitHeight(Height);
+        image.setFitWidth(Width);
         return image;
     }
+
 
     public static Text TextText(String textinput, int fontSize, int wrappingWidth)  {
         Text text = new Text(textinput);

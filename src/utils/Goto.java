@@ -3,6 +3,7 @@ package utils;
 import controller.GameController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.effect.ColorAdjust;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 
@@ -23,6 +24,11 @@ import pane.RootPane;
 public class Goto {
     private static RootPane rootPane;
 
+    static HBox ListCharP1 = new HBox();
+    static HBox ListCharP2 = new HBox();
+    static HBox CharChooseBFbutton = new HBox();
+
+
     public static void setRootPane(RootPane rootPane) {
         Goto.rootPane = rootPane;
     }
@@ -41,9 +47,7 @@ public class Goto {
 
     public static void mainPage() {
         clear();
-        ImageView background = GetDisplay.ImageImage("BG/castle.png");
-        background.setFitHeight(550);
-        background.setFitWidth(1000);
+        ImageView background = GetDisplay.ImageImage("BG/castle.png",550,1000);
 
         VBox main = new VBox();
         main.setAlignment(Pos.CENTER);
@@ -68,9 +72,7 @@ public class Goto {
 
     public static void choosePage() {
         clear();
-        ImageView backgroundChoose = GetDisplay.ImageImage("BG/choose2.jpg");
-        backgroundChoose.setFitHeight(580);
-        backgroundChoose.setFitWidth(1000);
+        ImageView backgroundChoose = GetDisplay.ImageImage("BG/choose2.jpg",580,1000);
 
         Text text = new Text("Choose Your Character");
         text.setFont(Font.font("Berlin Sans FB Demi", FontWeight.BOLD, 60));
@@ -88,52 +90,76 @@ public class Goto {
         line2.setSpacing(50);
         line2.setAlignment(Pos.CENTER);
 
-        ImageView fightingCat = GetDisplay.ImageImage("Cat/FightingCat.PNG");
-        fightingCat.setFitHeight(100);
-        fightingCat.setFitWidth(100);
+        ImageView fightingCat = GetDisplay.ImageImage("Cat/FightingCAt.PNG",100,100);
+        ImageView knightCat = GetDisplay.ImageImage("Cat/KnightCat.PNG",100,100);
+        ImageView ninjaCat = GetDisplay.ImageImage("Cat/NinjaCat.PNG",100,100);
+        ImageView catLoad = GetDisplay.ImageImage("Cat/CatLoad.PNG",100,100);
+        ImageView curseCat = GetDisplay.ImageImage("Cat/CurseCat.PNG",100,100);
+        ImageView docterCat = GetDisplay.ImageImage("Cat/DocterCat.png",100,100);
+        ImageView holyCat = GetDisplay.ImageImage("Cat/HolyCat.PNG",100,100);
+        ImageView vampireCat = GetDisplay.ImageImage("Cat/VampireCat.PNG",100,100);
 
-        ImageView knightCat = GetDisplay.ImageImage("Cat/KnightCat.PNG");
-        knightCat.setFitHeight(100);
-        knightCat.setFitWidth(100);
+        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        knightCat.setOnMouseClicked(event -> handleCharacterSelection(knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        catLoad.setOnMouseClicked(event -> handleCharacterSelection(catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
+        curseCat.setOnMouseClicked(event -> handleCharacterSelection(curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
+        docterCat.setOnMouseClicked(event -> handleCharacterSelection(docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
+        holyCat.setOnMouseClicked(event -> handleCharacterSelection(holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
+        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
 
-        ImageView ninjaCat = GetDisplay.ImageImage("Cat/NinjaCat.PNG");
-        ninjaCat.setFitHeight(100);
-        ninjaCat.setFitWidth(100);
-
-        ImageView catLoad = GetDisplay.ImageImage("Cat/CatLoad.PNG");
-        catLoad.setFitHeight(100);
-        catLoad.setFitWidth(100);
-
-        ImageView curseCat = GetDisplay.ImageImage("Cat/CurseCat.PNG");
-        curseCat.setFitHeight(100);
-        curseCat.setFitWidth(100);
-
-        ImageView docterCat = GetDisplay.ImageImage("Cat/DocterCat.PNG");
-        docterCat.setFitHeight(100);
-        docterCat.setFitWidth(100);
-
-        ImageView holyCat = GetDisplay.ImageImage("Cat/HolyCat.PNG");
-        holyCat.setFitHeight(100);
-        holyCat.setFitWidth(100);
-
-        ImageView vampireCat = GetDisplay.ImageImage("Cat/VampireCat.PNG");
-        vampireCat.setFitHeight(100);
-        vampireCat.setFitWidth(100);
 
         line1.getChildren().addAll(fightingCat, knightCat, ninjaCat, curseCat);
         line2.getChildren().addAll(docterCat, holyCat, catLoad, vampireCat);
 
+        //---------------------
         Button button = new Button("Choose");
         button.setPrefWidth(90);
         button.setPrefHeight(30);
         button.setBackground(Background.fill(Color.ORANGE));
         button.setTextFill(Color.WHITE);
 
-        mainPage.getChildren().addAll(text, line1, line2, button);
+        button.setOnMouseClicked(event -> {
+            if (CharChooseBFbutton.getChildren().isEmpty()) {
+                System.out.println("Please select a character first.");
+            } else {
+                System.out.println("Selected character(s):");
+                ListCharP1.getChildren().add(CharChooseBFbutton);
+            }
+        });
+        //---------------------
+
+
+        mainPage.getChildren().addAll(text, line1, line2, button,ListCharP1);
         StackPane stack = new StackPane(backgroundChoose, mainPage);
         rootPane.getChildren().add(stack);
     }
 
+
+    private static void handleCharacterSelection(ImageView selectedCharacter,ImageView noSelect1,ImageView noSelect2,ImageView noSelect3,ImageView noSelect4,ImageView noSelect5,ImageView noSelect6,ImageView noSelect7) {
+        ColorAdjust colorAdjust = new ColorAdjust();
+        ColorAdjust NOcolorAdjust = new ColorAdjust();
+        colorAdjust.setBrightness(-0.5);
+        NOcolorAdjust.setBrightness(0);
+
+        selectedCharacter.setEffect(colorAdjust);
+        noSelect1.setEffect(NOcolorAdjust);
+        noSelect2.setEffect(NOcolorAdjust);
+        noSelect3.setEffect(NOcolorAdjust);
+        noSelect4.setEffect(NOcolorAdjust);
+        noSelect5.setEffect(NOcolorAdjust);
+        noSelect6.setEffect(NOcolorAdjust);
+        noSelect7.setEffect(NOcolorAdjust);
+
+
+        ImageView charCopy = new ImageView();
+        charCopy.setImage(selectedCharacter.getImage());
+        charCopy.setFitHeight(selectedCharacter.getFitHeight());
+        charCopy.setFitWidth(selectedCharacter.getFitWidth());
+
+        CharChooseBFbutton.getChildren().clear();
+        CharChooseBFbutton.getChildren().add(charCopy);
+    }
 }
 
 //        gridPane2.add(char1,0,1);
