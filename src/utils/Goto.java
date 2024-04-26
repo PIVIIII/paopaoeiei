@@ -1,8 +1,13 @@
 package utils;
 
+import controller.GameController;
+import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
@@ -23,9 +28,10 @@ public class Goto {
     }
 
     public static void clear() {
-        if (rootPane != null && rootPane.getChildren().size() > 1) {
-            rootPane.getChildren().remove(1, rootPane.getChildren().size());
-        }
+//        if (rootPane != null && rootPane.getChildren().size() > 1) {
+//            rootPane.getChildren().remove(1, rootPane.getChildren().size());
+//        }
+        rootPane.getChildren().clear();
     }
 
 //    public static Button ChooseButton() {
@@ -35,8 +41,35 @@ public class Goto {
 
     public static void mainPage() {
         clear();
-        ImageView backgroundChoose = GetDisplay.ImageImage("BG/choose.jpg");
-        backgroundChoose.setFitHeight(550);
+        ImageView background = GetDisplay.ImageImage("BG/castle.png");
+        background.setFitHeight(550);
+        background.setFitWidth(1000);
+
+        VBox main = new VBox();
+        main.setAlignment(Pos.CENTER);
+        main.setSpacing(250);
+        main.setPadding(new Insets(5, 0, 0, 0));
+
+        Text title = new Text("CatCatCat");
+        title.setFont(Font.font("Berlin Sans FB Demi", FontWeight.BOLD, 80));
+        title.setFill(Color.WHITE);
+
+        Button button = new Button("Start");
+        button.setPrefWidth(100);
+        button.setPrefHeight(40);
+        button.setBackground(Background.fill(Color.DARKCYAN));
+        button.setTextFill(Color.WHITE);
+        button.setOnMouseClicked(e->choosePage());
+
+        main.getChildren().addAll(title, button);
+        StackPane stack = new StackPane(background, main);
+        rootPane.getChildren().add(stack);
+    }
+
+    public static void choosePage() {
+        clear();
+        ImageView backgroundChoose = GetDisplay.ImageImage("BG/choose2.jpg");
+        backgroundChoose.setFitHeight(580);
         backgroundChoose.setFitWidth(1000);
 
         VBox mainPage = new VBox();
