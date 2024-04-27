@@ -1,10 +1,8 @@
 package utils;
 
-import controller.GameController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.ColorAdjust;
-import javafx.scene.layout.GridPane;
 import javafx.scene.image.ImageView;
 
 import javafx.scene.text.Font;
@@ -17,6 +15,8 @@ import javafx.scene.paint.Color;
 //import pane.CharPane;
 //import pane.ChooseChar;
 import pane.RootPane;
+
+import java.util.concurrent.atomic.AtomicInteger;
 //import pane.BookListPane;
 
 //import pane.SearchPane;
@@ -26,7 +26,7 @@ public class Goto {
 
     static HBox ListCharP1 = new HBox();
     static HBox ListCharP2 = new HBox();
-    static HBox CharChooseBFbutton = new HBox();
+    final static HBox CharChooseBFbutton = new HBox();
 
 
     public static void setRootPane(RootPane rootPane) {
@@ -34,16 +34,8 @@ public class Goto {
     }
 
     public static void clear() {
-//        if (rootPane != null && rootPane.getChildren().size() > 1) {
-//            rootPane.getChildren().remove(1, rootPane.getChildren().size());
-//        }
         rootPane.getChildren().clear();
     }
-
-//    public static Button ChooseButton() {
-////        button.setOnMouseClicked(e -> Goto.addNewBookPage());
-//        return button;
-//    }
 
     public static void mainPage() {
         clear();
@@ -124,7 +116,7 @@ public class Goto {
                 System.out.println("Please select a character first.");
             } else {
                 System.out.println("Selected character(s):");
-                ListCharP1.getChildren().add(CharChooseBFbutton);
+                ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
             }
         });
         //---------------------
@@ -162,5 +154,3 @@ public class Goto {
     }
 }
 
-//        gridPane2.add(char1,0,1);
-//        setOnMouseClicked(e -> Goto.bookPage(char1));
