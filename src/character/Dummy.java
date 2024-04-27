@@ -4,7 +4,7 @@ package character;
 public class Dummy extends BaseCharacter{
     // Real character won't have parameters in constructor
     public Dummy(String name, int maxHp, int atk, int def, boolean isTeam1){
-        super(name, maxHp, atk, def);
+        super(name, maxHp, atk, def,"Cat/CurseCat.PNG");
         setFirstSkillName("First Skill Name");
         setFirstSkillDescription("First Skill Description");
         setSecondSkillName("Second Skill Name");

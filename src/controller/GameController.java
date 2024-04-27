@@ -199,6 +199,14 @@ public class GameController {
         return isRunning;
     }
 
+    public void setPlayer1(ArrayList<BaseCharacter> player1) {
+        this.player1 = player1;
+    }
+
+    public void setPlayer2(ArrayList<BaseCharacter> player2) {
+        this.player2 = player2;
+    }
+
     public void setRunning(boolean running) {
         isRunning = running;
     }

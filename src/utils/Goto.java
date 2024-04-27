@@ -1,5 +1,7 @@
 package utils;
 
+import character.*;
+import controller.GameController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.effect.ColorAdjust;
@@ -15,8 +17,6 @@ import javafx.scene.paint.Color;
 //import pane.CharPane;
 //import pane.ChooseChar;
 import pane.RootPane;
-
-import java.util.concurrent.atomic.AtomicInteger;
 //import pane.BookListPane;
 
 //import pane.SearchPane;
@@ -27,7 +27,18 @@ public class Goto {
     static HBox ListCharP1 = new HBox();
     static HBox ListCharP2 = new HBox();
     final static HBox CharChooseBFbutton = new HBox();
+//    final static BaseCharacter ChooseChar ;
 
+    //----------------------------------------------
+    static FightingCat FC = new FightingCat(true);
+    static KnightCat KC = new KnightCat(true);
+    static NinjaCat NC = new NinjaCat(true);
+    static CatLord CL = new CatLord(true);
+    static CursedCat CC = new CursedCat(true);
+    static DoctorCat DC = new DoctorCat(true);
+    static HolyCat HC = new HolyCat(true);
+    static VampireCat VC = new VampireCat(true);
+    //----------------------------------------------
 
     public static void setRootPane(RootPane rootPane) {
         Goto.rootPane = rootPane;
@@ -82,14 +93,14 @@ public class Goto {
         line2.setSpacing(50);
         line2.setAlignment(Pos.CENTER);
 
-        ImageView fightingCat = GetDisplay.ImageImage("Cat/FightingCAt.PNG",100,100);
-        ImageView knightCat = GetDisplay.ImageImage("Cat/KnightCat.PNG",100,100);
-        ImageView ninjaCat = GetDisplay.ImageImage("Cat/NinjaCat.PNG",100,100);
-        ImageView catLoad = GetDisplay.ImageImage("Cat/CatLoad.PNG",100,100);
-        ImageView curseCat = GetDisplay.ImageImage("Cat/CurseCat.PNG",100,100);
-        ImageView docterCat = GetDisplay.ImageImage("Cat/DocterCat.png",100,100);
-        ImageView holyCat = GetDisplay.ImageImage("Cat/HolyCat.PNG",100,100);
-        ImageView vampireCat = GetDisplay.ImageImage("Cat/VampireCat.PNG",100,100);
+        ImageView fightingCat = GetDisplay.ImageImage(FC.getImg(),100,100);
+        ImageView knightCat = GetDisplay.ImageImage(KC.getImg(),100,100);
+        ImageView ninjaCat = GetDisplay.ImageImage(NC.getImg(),100,100);
+        ImageView catLoad = GetDisplay.ImageImage(CL.getImg(),100,100);
+        ImageView curseCat = GetDisplay.ImageImage(CC.getImg(),100,100);
+        ImageView docterCat = GetDisplay.ImageImage(DC.getImg(),100,100);
+        ImageView holyCat = GetDisplay.ImageImage(HC.getImg(),100,100);
+        ImageView vampireCat = GetDisplay.ImageImage(VC.getImg(),100,100);
 
         fightingCat.setOnMouseClicked(event -> handleCharacterSelection(fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
         knightCat.setOnMouseClicked(event -> handleCharacterSelection(knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
@@ -117,6 +128,8 @@ public class Goto {
             } else {
                 System.out.println("Selected character(s):");
                 ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+//                GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add());
+//                System.out.println(GameController.getInstance().getPlayer1());
             }
         });
         //---------------------
@@ -143,7 +156,6 @@ public class Goto {
         noSelect6.setEffect(NOcolorAdjust);
         noSelect7.setEffect(NOcolorAdjust);
 
-
         ImageView charCopy = new ImageView();
         charCopy.setImage(selectedCharacter.getImage());
         charCopy.setFitHeight(selectedCharacter.getFitHeight());
@@ -151,6 +163,7 @@ public class Goto {
 
         CharChooseBFbutton.getChildren().clear();
         CharChooseBFbutton.getChildren().add(charCopy);
+        System.out.println(selectedCharacter);
     }
 }
 

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class NinjaCat extends BaseCharacter{
     public NinjaCat(boolean isTeam1){
-        super("Ninja Cat", 13, 7, 3);
+        super("Ninja Cat", 13, 7, 3,"Cat/NinjaCat.PNG");
         setFirstSkillName("Slash");
         setFirstSkillDescription("Deals (atk + 2) damage to an enemy");
         setSecondSkillName("Iaigiri");

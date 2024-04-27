@@ -14,8 +14,17 @@ public abstract class BaseCharacter {
     private String secondSkillDescription;
     private boolean isTeam1;
     private boolean firstSkillTargetEnemy;
+    private String img;
 
-    public BaseCharacter(String name, int maxHp, int atk, int def) {
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public BaseCharacter(String name, int maxHp, int atk, int def , String img) {
         setName(name);
         setMaxHp(maxHp);
         setHp(maxHp);
@@ -23,6 +32,7 @@ public abstract class BaseCharacter {
         setMp(3);
         setAtk(atk);
         setDef(def);
+        setImg(img);
     }
 
     // return int in case of future use
