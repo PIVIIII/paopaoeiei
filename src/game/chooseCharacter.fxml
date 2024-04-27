@@ -53,7 +53,7 @@
             <Image url="@../image/Cat/CatLoad.PNG" />
          </image>
       </ImageView>
-      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="716.0" layoutY="275.0" pickOnBounds="true" preserveRatio="true" styleClass="vampireCat">
+      <ImageView fitHeight="130.0" fitWidth="130.0" layoutX="716.0" layoutY="275.0" nodeOrientation="RIGHT_TO_LEFT" pickOnBounds="true" preserveRatio="true" styleClass="vampireCat">
          <image>
             <Image url="@../image/Cat/HolyCat.PNG" />
          </image>

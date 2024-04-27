@@ -3,6 +3,7 @@ package utils;
 import character.*;
 import controller.GameController;
 import javafx.geometry.Insets;
+import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
@@ -62,11 +63,13 @@ public class Goto {
         title.setFill(Color.WHITE);
 
         Button button = new Button("Start");
-        button.setPrefWidth(100);
-        button.setPrefHeight(40);
+        button.setPrefWidth(130);
+        button.setPrefHeight(30);
         button.setBackground(Background.fill(Color.DARKCYAN));
         button.setTextFill(Color.WHITE);
         button.setOnMouseClicked(e->choosePage());
+        button.setFont(Font.font("Berlin Sans FB Demi", FontWeight.NORMAL, 30));
+
 
         main.getChildren().addAll(title, button);
         StackPane stack = new StackPane(background, main);
@@ -118,16 +121,18 @@ public class Goto {
 
         //---------------------
         Button button = new Button("Choose");
-        button.setPrefWidth(90);
+        button.setPrefWidth(120);
         button.setPrefHeight(30);
         button.setBackground(Background.fill(Color.ORANGE));
         button.setTextFill(Color.WHITE);
+        button.setFont(Font.font("Berlin Sans FB Demi", FontWeight.NORMAL, 20));
 
         Button nextGamebutton = new Button("Next >>");
-        nextGamebutton.setPrefWidth(90);
+        nextGamebutton.setPrefWidth(120);
         nextGamebutton.setPrefHeight(30);
         nextGamebutton.setBackground(Background.fill(Color.YELLOW));
         nextGamebutton.setTextFill(Color.BLACK);
+        nextGamebutton.setFont(Font.font("Berlin Sans FB Demi", FontWeight.NORMAL, 20));
 
 
         HBox buttonBox = new HBox();
@@ -137,16 +142,24 @@ public class Goto {
         nextGamebutton.setOnMouseClicked(e->GamePage());
 
 
+        final boolean[] isListCharP2 = {true};
         button.setOnMouseClicked(event -> {
             if (CharChooseBFbutton.getChildren().isEmpty() ) {
                 System.out.println("Please select a character first.");
             }
             else {
                 System.out.println("Selected character(s):");
-                ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                if(isListCharP2[0]) {
+                    CharChooseBFbutton.getChildren().get(0).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+                    ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                    isListCharP2[0] = false;
+                }else {
+                    ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                    isListCharP2[0] = true;
+                }
 //                GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add());
 //                System.out.println(GameController.getInstance().getPlayer1());
-                if(ListCharP1.getChildren().size()==3) {
+                if(ListCharP1.getChildren().size()==3 && ListCharP2.getChildren().size()==3) {
                     buttonBox.getChildren().remove(0);
                     buttonBox.getChildren().add(nextGamebutton);
                 }
@@ -154,8 +167,14 @@ public class Goto {
         });
         //---------------------
 
+        HBox charChoose = new HBox();
+        charChoose.getChildren().addAll(ListCharP1, ListCharP2 );
+        charChoose.setAlignment(Pos.CENTER_RIGHT);
 
-        mainPage.getChildren().addAll(text, line1, line2, buttonBox, ListCharP1);
+        charChoose.setSpacing(400);
+
+
+        mainPage.getChildren().addAll(text, line1, line2, buttonBox, charChoose);
         StackPane stack = new StackPane(backgroundChoose, mainPage);
         rootPane.getChildren().add(stack);
     }
@@ -187,7 +206,13 @@ public class Goto {
     }
 
     public static void GamePage() {
+        clear();
+        ImageView background = GetDisplay.ImageImage("BG/field.jpg",580,1000);
+
+        VBox main = new VBox();
+
+        StackPane stack = new StackPane(background, main);
+        rootPane.getChildren().add(stack);
 
     }
 }
-
