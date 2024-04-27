@@ -166,8 +166,8 @@ public class Goto {
                     }else {
                         ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
                         TurnP2Choose[0] = true;
-//                        GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add(handleCharacterSelection));
-//                        System.out.println("eiei-> " + GameController.getInstance().getPlayer1());
+                        GameController.getInstance().getPlayer1().add(CharBaseCharacter);
+                        System.out.println("eiei-> " + GameController.getInstance().getPlayer1());
 
                     }
                     CharChoose[position] = true;
@@ -244,6 +244,8 @@ public class Goto {
         System.out.println(position);
         System.out.println(BaseChar);
 
+        CharBaseCharacter = BaseChar;
+        System.out.println(CharBaseCharacter);
 
     }
 
