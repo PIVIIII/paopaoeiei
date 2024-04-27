@@ -31,7 +31,7 @@ public class Goto {
 //    final static BaseCharacter ChooseChar ;
     private static int position ;
     final static boolean[] CharChoose = new boolean[8];
-//    private static String CharBaseCharacter;
+    private static BaseCharacter CharBaseCharacter;
 
 
     //----------------------------------------------
@@ -109,15 +109,14 @@ public class Goto {
         ImageView holyCat = GetDisplay.ImageImage(HC.getImg(),100,100);
         ImageView vampireCat = GetDisplay.ImageImage(VC.getImg(),100,100);
 
-
-        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(FC.getName(),fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        knightCat.setOnMouseClicked(event -> handleCharacterSelection(KC.getName(),knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(NC.getName(),ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        catLoad.setOnMouseClicked(event -> handleCharacterSelection(CL.getName(),catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
-        curseCat.setOnMouseClicked(event -> handleCharacterSelection(CC.getName(),curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
-        docterCat.setOnMouseClicked(event -> handleCharacterSelection(DC.getName(),docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
-        holyCat.setOnMouseClicked(event -> handleCharacterSelection(HC.getName(),holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
-        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(VC.getName(),vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
+        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(FC),fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        knightCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(KC),knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(NC),ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        catLoad.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(CL),catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
+        curseCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(CC),curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
+        docterCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(DC),docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
+        holyCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(HC),holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
+        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(VC),vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
 
 
         line1.getChildren().addAll(fightingCat, knightCat, ninjaCat, curseCat);
@@ -162,6 +161,9 @@ public class Goto {
 
                         ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
                         isListCharP2[0] = false;
+
+//                        GameController.getInstance().getPlayer2().add(CharBaseCharacter);
+//                        System.out.println("eiei-> " + GameController.getInstance().getPlayer2());
                     }else {
                         ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
                         isListCharP2[0] = true;
@@ -220,29 +222,30 @@ public class Goto {
         if (BaseChar==FC.getName()) {
             position=0;
         }
-        else if (BaseChar==KC.getName()) {
+        else if (BaseChar.equals(String.valueOf(KC))) {
             position=1;
         }
-        else if (BaseChar==NC.getName()) {
+        else if (BaseChar.equals(String.valueOf(NC))) {
             position=2;
         }
-        else if (BaseChar==CL.getName()) {
+        else if (BaseChar.equals(String.valueOf(CL))) {
             position=3;
         }
-        else if (BaseChar==CC.getName()) {
+        else if (BaseChar.equals(String.valueOf(CC))) {
             position=4;
         }
-        else if (BaseChar==DC.getName()) {
+        else if (BaseChar.equals(String.valueOf(DC))) {
             position=5;
-        }else if (BaseChar==HC.getName()) {
+        }else if (BaseChar.equals(String.valueOf(HC))) {
             position=6;
-        }else if (BaseChar==VC.getName()) {
+        }else if (BaseChar.equals(String.valueOf(VC))) {
             position=7;
         }
+        System.out.println(position);
 
-//        CharBaseCharacter=BaseChar;
-//        System.out.println(CharBaseCharacter);
-//
+        String CharBaseCharacter = BaseChar;
+        System.out.println(CharBaseCharacter);
+
     }
 
     public static void GamePage() {
