@@ -123,25 +123,39 @@ public class Goto {
         button.setBackground(Background.fill(Color.ORANGE));
         button.setTextFill(Color.WHITE);
 
+        Button nextGamebutton = new Button("Next >>");
+        nextGamebutton.setPrefWidth(90);
+        nextGamebutton.setPrefHeight(30);
+        nextGamebutton.setBackground(Background.fill(Color.YELLOW));
+        nextGamebutton.setTextFill(Color.BLACK);
+
+
+        HBox buttonBox = new HBox();
+        buttonBox.setAlignment(Pos.CENTER);
+        buttonBox.getChildren().addAll(button);
+
+        nextGamebutton.setOnMouseClicked(e->GamePage());
+
+
         button.setOnMouseClicked(event -> {
-            if (CharChooseBFbutton.getChildren().isEmpty()) {
+            if (CharChooseBFbutton.getChildren().isEmpty() ) {
                 System.out.println("Please select a character first.");
-            } else {
-                if(ListCharP1.getChildren().size()<3) {
+            }
+            else {
                 System.out.println("Selected character(s):");
                 ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
 //                GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add());
 //                System.out.println(GameController.getInstance().getPlayer1());
-                }
-                else {
-                    button.setVisible(false);
+                if(ListCharP1.getChildren().size()==3) {
+                    buttonBox.getChildren().remove(0);
+                    buttonBox.getChildren().add(nextGamebutton);
                 }
             }
         });
         //---------------------
 
 
-        mainPage.getChildren().addAll(text, line1, line2, button,ListCharP1);
+        mainPage.getChildren().addAll(text, line1, line2, buttonBox, ListCharP1);
         StackPane stack = new StackPane(backgroundChoose, mainPage);
         rootPane.getChildren().add(stack);
     }
@@ -170,7 +184,9 @@ public class Goto {
         CharChooseBFbutton.getChildren().clear();
         CharChooseBFbutton.getChildren().add(charCopy);
         System.out.println(selectedCharacter);
+    }
 
+    public static void GamePage() {
 
     }
 }
