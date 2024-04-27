@@ -18,6 +18,8 @@ import javafx.scene.paint.Color;
 //import pane.CharPane;
 //import pane.ChooseChar;
 import pane.RootPane;
+
+import java.util.ArrayList;
 //import pane.BookListPane;
 
 //import pane.SearchPane;
@@ -145,6 +147,8 @@ public class Goto {
 
 
         final boolean[] TurnP2Choose = {true};
+        final int P1list = 0;
+        final int P2list = 0;
         button.setOnMouseClicked(event -> {
             if (CharChooseBFbutton.getChildren().isEmpty() ) {
                 System.out.println("Please select a character first.");
@@ -152,7 +156,6 @@ public class Goto {
             else {
                 if( CharChoose[position] ){
                     System.out.println("Same Char Choose");
-
                 }
                 else {
                     if(TurnP2Choose[0]) {
@@ -161,13 +164,31 @@ public class Goto {
                         ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
                         TurnP2Choose[0] = false;
 
-//                        GameController.getInstance().getPlayer2().add(CharBaseCharacter);
-//                        System.out.println("eiei-> " + GameController.getInstance().getPlayer2());
+                        ArrayList<BaseCharacter> player2Characters = GameController.getInstance().getPlayer1();
+                        if (player2Characters == null) {
+                            player2Characters = new ArrayList<>();
+                            GameController.getInstance().setPlayer2(player2Characters);
+                            GameController.getInstance().getPlayer2().add(CharBaseCharacter);
+                        }
+                        else {
+                            GameController.getInstance().getPlayer2().add(CharBaseCharacter);
+                        }
+
+                        System.out.println("eiei2-> " + GameController.getInstance().getPlayer2());
                     }else {
                         ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
                         TurnP2Choose[0] = true;
-                        GameController.getInstance().getPlayer1().add(CharBaseCharacter);
-                        System.out.println("eiei-> " + GameController.getInstance().getPlayer1());
+
+                        ArrayList<BaseCharacter> player1Characters = GameController.getInstance().getPlayer1();
+                        if (player1Characters == null) {
+                            player1Characters = new ArrayList<>();
+                            GameController.getInstance().setPlayer1(player1Characters);
+                            GameController.getInstance().getPlayer1().add(CharBaseCharacter);
+                        }
+                        else {
+                            GameController.getInstance().getPlayer1().add(CharBaseCharacter);
+                        }
+                        System.out.println("eiei-> " + GameController.getInstance().getPlayer1() );
 
                     }
                     CharChoose[position] = true;
@@ -242,7 +263,7 @@ public class Goto {
             position=7;
         }
         System.out.println(position);
-        System.out.println(BaseChar);
+//        System.out.println(BaseChar);
 
         CharBaseCharacter = BaseChar;
         System.out.println(CharBaseCharacter);
