@@ -29,6 +29,9 @@ public class Goto {
     static HBox ListCharP2 = new HBox();
     final static HBox CharChooseBFbutton = new HBox();
 //    final static BaseCharacter ChooseChar ;
+    private static int position ;
+    final static boolean[] CharChoose = new boolean[8];
+
 
     //----------------------------------------------
     static FightingCat FC = new FightingCat(true);
@@ -148,25 +151,30 @@ public class Goto {
                 System.out.println("Please select a character first.");
             }
             else {
-                System.out.println("Selected character(s):");
-                if(isListCharP2[0]) {
-
-                    CharChooseBFbutton.getChildren().get(0).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-
-                    ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
-                    isListCharP2[0] = false;
-                }else {
-                    ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
-                    isListCharP2[0] = true;
+                if( CharChoose[position] ){
+                    System.out.println("Same Char Choose");
                 }
+                else {
+                    if(isListCharP2[0]) {
+                        CharChooseBFbutton.getChildren().get(0).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+
+                        ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                        isListCharP2[0] = false;
+                    }else {
+                        ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                        isListCharP2[0] = true;
+                    }
+                    CharChoose[position] = true;
 //                GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add());
 //                System.out.println(GameController.getInstance().getPlayer1());
-                if(ListCharP1.getChildren().size()==3 && ListCharP2.getChildren().size()==3) {
-                    buttonBox.getChildren().remove(0);
-                    buttonBox.getChildren().add(nextGamebutton);
+                    if(ListCharP1.getChildren().size()==3 && ListCharP2.getChildren().size()==3) {
+                        buttonBox.getChildren().remove(0);
+                        buttonBox.getChildren().add(nextGamebutton);
+                    }
                 }
             }
         });
+
         //---------------------
 
         HBox charChoose = new HBox();
@@ -206,6 +214,31 @@ public class Goto {
         CharChooseBFbutton.getChildren().clear();
         CharChooseBFbutton.getChildren().add(charCopy);
         System.out.println(selectedCharacter);
+
+        if (BaseChar==FC.getName()) {
+            position=0;
+        }
+        else if (BaseChar==KC.getName()) {
+            position=1;
+        }
+        else if (BaseChar==NC.getName()) {
+            position=2;
+        }
+        else if (BaseChar==CL.getName()) {
+            position=3;
+        }
+        else if (BaseChar==CC.getName()) {
+            position=4;
+        }
+        else if (BaseChar==DC.getName()) {
+            position=5;
+        }else if (BaseChar==HC.getName()) {
+            position=6;
+        }else if (BaseChar==VC.getName()) {
+            position=7;
+        }
+        System.out.println(position);
+
     }
 
     public static void GamePage() {
