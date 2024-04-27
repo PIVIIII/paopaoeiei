@@ -9,7 +9,7 @@ public class CatLord extends BaseCharacter {
     private final int SECOND_SKILL_DAMAGE_MODIFIER = 2;
     private final int SECOND_SKILL_BUFF_MODIFIER = 3;
     public CatLord(boolean isTeam1){
-        super("Cat Lord", 15, 6, 3, "Cat/CatLord.PNG");
+        super("Cat Lord", 15, 6, 3, "Catwithoutbg/CatLord.PNG");
         setFirstSkillName("King's Sword");
         setFirstSkillDescription("Deals (atk + " + FIRST_SKILL_BONUS_DAMAGE + ") damage to an enemy");
         setSecondSkillName("King's Wish");

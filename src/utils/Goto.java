@@ -102,14 +102,15 @@ public class Goto {
         ImageView holyCat = GetDisplay.ImageImage(HC.getImg(),100,100);
         ImageView vampireCat = GetDisplay.ImageImage(VC.getImg(),100,100);
 
-        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        knightCat.setOnMouseClicked(event -> handleCharacterSelection(knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        catLoad.setOnMouseClicked(event -> handleCharacterSelection(catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
-        curseCat.setOnMouseClicked(event -> handleCharacterSelection(curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
-        docterCat.setOnMouseClicked(event -> handleCharacterSelection(docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
-        holyCat.setOnMouseClicked(event -> handleCharacterSelection(holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
-        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
+
+        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(FC.getName(),fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        knightCat.setOnMouseClicked(event -> handleCharacterSelection(KC.getName(),knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(NC.getName(),ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        catLoad.setOnMouseClicked(event -> handleCharacterSelection(CL.getName(),catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
+        curseCat.setOnMouseClicked(event -> handleCharacterSelection(CC.getName(),curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
+        docterCat.setOnMouseClicked(event -> handleCharacterSelection(DC.getName(),docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
+        holyCat.setOnMouseClicked(event -> handleCharacterSelection(HC.getName(),holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
+        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(VC.getName(),vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
 
 
         line1.getChildren().addAll(fightingCat, knightCat, ninjaCat, curseCat);
@@ -126,10 +127,15 @@ public class Goto {
             if (CharChooseBFbutton.getChildren().isEmpty()) {
                 System.out.println("Please select a character first.");
             } else {
+                if(ListCharP1.getChildren().size()<3) {
                 System.out.println("Selected character(s):");
                 ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
 //                GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add());
 //                System.out.println(GameController.getInstance().getPlayer1());
+                }
+                else {
+                    button.setVisible(false);
+                }
             }
         });
         //---------------------
@@ -141,7 +147,7 @@ public class Goto {
     }
 
 
-    private static void handleCharacterSelection(ImageView selectedCharacter,ImageView noSelect1,ImageView noSelect2,ImageView noSelect3,ImageView noSelect4,ImageView noSelect5,ImageView noSelect6,ImageView noSelect7) {
+    private static void handleCharacterSelection(String BaseChar ,ImageView selectedCharacter,ImageView noSelect1,ImageView noSelect2,ImageView noSelect3,ImageView noSelect4,ImageView noSelect5,ImageView noSelect6,ImageView noSelect7) {
         ColorAdjust colorAdjust = new ColorAdjust();
         ColorAdjust NOcolorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.5);
@@ -164,6 +170,8 @@ public class Goto {
         CharChooseBFbutton.getChildren().clear();
         CharChooseBFbutton.getChildren().add(charCopy);
         System.out.println(selectedCharacter);
+
+
     }
 }
 

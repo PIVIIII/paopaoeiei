@@ -10,7 +10,7 @@ public class KnightCat extends BaseCharacter {
     private final int SECOND_SKILL_DEBUFF_MODIFIER = 2;
     private boolean isGuard = false;
     public KnightCat(boolean isTeam1){
-        super("Knight Cat", 13, 6, 3,"Cat/KnightCat.PNG");
+        super("Knight Cat", 13, 6, 3,"Catwithoutbg/KnightCat.PNG");
         setFirstSkillName("Holy Strike");
         setFirstSkillDescription("Deals (atk + " + FIRST_SKILL_BONUS_DAMAGE + ") damage to an enemy");
         setSecondSkillName("Excalibur");

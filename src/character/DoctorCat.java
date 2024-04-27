@@ -8,7 +8,7 @@ public class DoctorCat extends BaseCharacter {
     private final int FIRST_SKILL_HEAL = 4;
     private final int SECOND_SKILL_HEAL = 3;
     public DoctorCat(boolean isTeam1){
-        super("Doctor Cat", 14, 6, 4, "Cat/DoctorCat.PNG");
+        super("Doctor Cat", 14, 6, 4, "Catwithoutbg/DoctorCat.PNG");
         setFirstSkillName("Healing");
         setFirstSkillDescription("Heal an ally hp by" + FIRST_SKILL_HEAL);
         setSecondSkillName("Call an ambulance");

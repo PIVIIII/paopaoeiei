@@ -6,7 +6,7 @@ import java.util.ArrayList;
 // NOT DONE*****************************************************
 public class CursedCat extends BaseCharacter{
     public CursedCat(boolean isTeam1){
-        super("Cursed Cat", 13, 6, 2,"Cat/CurseCat.PNG");
+        super("Cursed Cat", 13, 6, 2,"Catwithoutbg/CurseCat.PNG");
         setFirstSkillName("Curse");
         setFirstSkillDescription("Decreases all enemies' atk by 1");
         setSecondSkillName("CurseCurse");

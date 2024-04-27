@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class FightingCat extends BaseCharacter{
     public FightingCat(boolean isTeam1){
-        super("Fighting Cat", 15, 7, 3,"Cat/FightingCat.PNG");
+        super("Fighting Cat", 15, 7, 3,"Catwithoutbg/FightingCat.PNG");
         setFirstSkillName("Hit");
         setFirstSkillDescription("Deals (atk + 1) damage to an enemy");
         setSecondSkillName("Eternal");

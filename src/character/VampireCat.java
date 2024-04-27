@@ -9,7 +9,7 @@ public class VampireCat extends BaseCharacter{
     private final int SECOND_SKILL_DAMAGE_MODIFIER = 2;
 
     public VampireCat(boolean isTeam1){
-        super("Vampire Cat", 15, 6, 0,"Cat/VampireCat.PNG");
+        super("Vampire Cat", 15, 6, 0,"Catwithoutbg/VampireCat.PNG");
         setFirstSkillName("Crimson Slash");
         setFirstSkillDescription("Deals (atk + " + FIRST_SKILL_DAMAGE_MODIFIER + ") damage to an enemy");
         setSecondSkillName("Blood Manipulation");

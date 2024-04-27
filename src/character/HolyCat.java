@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class HolyCat extends BaseCharacter{
     public HolyCat(boolean isTeam1){
-        super("Holy Cat", 13, 6, 2,"Cat/HolyCat.PNG");
+        super("Holy Cat", 13, 6, 2,"Catwithoutbg/HolyCat.PNG");
         setFirstSkillName("Holy Light");
         setFirstSkillDescription("Increases an allie atk by 1 and heals all allie by 1");
         setSecondSkillName("Heaven's Whisper");
