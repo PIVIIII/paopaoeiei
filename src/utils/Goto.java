@@ -35,15 +35,16 @@ public class Goto {
     private static BaseCharacter CharBaseCharacter;
 
 
+    static boolean TernP2 = true;
     //----------------------------------------------
-    static FightingCat FC = new FightingCat(true);
-    static KnightCat KC = new KnightCat(true);
-    static NinjaCat NC = new NinjaCat(true);
-    static CatLord CL = new CatLord(true);
-    static CursedCat CC = new CursedCat(true);
-    static DoctorCat DC = new DoctorCat(true);
-    static HolyCat HC = new HolyCat(true);
-    static VampireCat VC = new VampireCat(true);
+    static FightingCat FC = new FightingCat(TernP2);
+    static KnightCat KC = new KnightCat(TernP2);
+    static NinjaCat NC = new NinjaCat(TernP2);
+    static CatLord CL = new CatLord(TernP2);
+    static CursedCat CC = new CursedCat(TernP2);
+    static DoctorCat DC = new DoctorCat(TernP2);
+    static HolyCat HC = new HolyCat(TernP2);
+    static VampireCat VC = new VampireCat(TernP2);
     //----------------------------------------------
 
     public static void setRootPane(RootPane rootPane) {
@@ -147,8 +148,6 @@ public class Goto {
 
 
         final boolean[] TurnP2Choose = {true};
-        final int P1list = 0;
-        final int P2list = 0;
         button.setOnMouseClicked(event -> {
             if (CharChooseBFbutton.getChildren().isEmpty() ) {
                 System.out.println("Please select a character first.");
@@ -175,6 +174,9 @@ public class Goto {
                         }
 
                         System.out.println("eiei2-> " + GameController.getInstance().getPlayer2());
+                        TernP2 = false;
+                        System.out.println(TernP2);
+
                     }else {
                         ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
                         TurnP2Choose[0] = true;
@@ -189,7 +191,8 @@ public class Goto {
                             GameController.getInstance().getPlayer1().add(CharBaseCharacter);
                         }
                         System.out.println("eiei-> " + GameController.getInstance().getPlayer1() );
-
+                        TernP2 = true;
+                        System.out.println(TernP2);
                     }
                     CharChoose[position] = true;
                     if(ListCharP1.getChildren().size()==3 && ListCharP2.getChildren().size()==3) {
