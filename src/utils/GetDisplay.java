@@ -1,13 +1,12 @@
 package utils;
 
 //import item.Book;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
-import java.io.InputStream;
+import java.awt.*;
 
 public class GetDisplay {
 

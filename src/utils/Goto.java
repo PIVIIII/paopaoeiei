@@ -7,16 +7,12 @@ import javafx.geometry.NodeOrientation;
 import javafx.geometry.Pos;
 import javafx.scene.effect.ColorAdjust;
 import javafx.scene.image.ImageView;
-
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.scene.control.Button;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
-//import pane.NewBookPane;
-//import pane.CharPane;
-//import pane.ChooseChar;
 import pane.RootPane;
 
 import java.util.ArrayList;
@@ -27,15 +23,12 @@ import java.util.ArrayList;
 public class Goto {
     private static RootPane rootPane;
 
-    static HBox ListCharP1 = new HBox();
-    static HBox ListCharP2 = new HBox();
     final static HBox CharChooseBFbutton = new HBox();
     private static int position ;
     final static boolean[] CharChoose = new boolean[8];
     private static BaseCharacter CharBaseCharacter;
-
-
     static boolean TernP2 = true;
+
     //----------------------------------------------
     static FightingCat FC = new FightingCat(TernP2);
     static KnightCat KC = new KnightCat(TernP2);
@@ -147,7 +140,8 @@ public class Goto {
         nextGamebutton.setOnMouseClicked(e->GamePage());
 
 
-        final boolean[] TurnP2Choose = {true};
+        HBox ListCharP1 = new HBox();
+        HBox ListCharP2 = new HBox();
         button.setOnMouseClicked(event -> {
             if (CharChooseBFbutton.getChildren().isEmpty() ) {
                 System.out.println("Please select a character first.");
@@ -157,11 +151,10 @@ public class Goto {
                     System.out.println("Same Char Choose");
                 }
                 else {
-                    if(TurnP2Choose[0]) {
+                    if(TernP2) {
                         CharChooseBFbutton.getChildren().get(0).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
                         ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
-                        TurnP2Choose[0] = false;
 
                         ArrayList<BaseCharacter> player2Characters = GameController.getInstance().getPlayer1();
                         if (player2Characters == null) {
@@ -179,7 +172,6 @@ public class Goto {
 
                     }else {
                         ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
-                        TurnP2Choose[0] = true;
 
                         ArrayList<BaseCharacter> player1Characters = GameController.getInstance().getPlayer1();
                         if (player1Characters == null) {
@@ -209,9 +201,7 @@ public class Goto {
 
         charChoose.getChildren().addAll(ListCharP1, ListCharP2 );
         charChoose.setAlignment(Pos.CENTER_RIGHT);
-
         charChoose.setSpacing(400);
-
 
         mainPage.getChildren().addAll(text, line1, line2, buttonBox, charChoose);
         StackPane stack = new StackPane(backgroundChoose, mainPage);
@@ -265,7 +255,7 @@ public class Goto {
         }else if (BaseChar.equals(VC)) {
             position=7;
         }
-        System.out.println(position);
+//        System.out.println(position);
 //        System.out.println(BaseChar);
 
         CharBaseCharacter = BaseChar;
