@@ -137,16 +137,23 @@ public class Goto {
         nextGamebutton.setOnMouseClicked(e->GamePage());
 
 
+        final boolean[] isListCharP2 = {true};
         button.setOnMouseClicked(event -> {
             if (CharChooseBFbutton.getChildren().isEmpty() ) {
                 System.out.println("Please select a character first.");
             }
             else {
                 System.out.println("Selected character(s):");
-                ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                if(isListCharP2[0]) {
+                    ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                    isListCharP2[0] = false;
+                }else {
+                    ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
+                    isListCharP2[0] = true;
+                }
 //                GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add());
 //                System.out.println(GameController.getInstance().getPlayer1());
-                if(ListCharP1.getChildren().size()==3) {
+                if(ListCharP1.getChildren().size()==3 && ListCharP2.getChildren().size()==3) {
                     buttonBox.getChildren().remove(0);
                     buttonBox.getChildren().add(nextGamebutton);
                 }
@@ -154,8 +161,12 @@ public class Goto {
         });
         //---------------------
 
+        HBox charChoose = new HBox();
+        charChoose.getChildren().addAll(ListCharP1,ListCharP2);
+        charChoose.setSpacing(200);
 
-        mainPage.getChildren().addAll(text, line1, line2, buttonBox, ListCharP1);
+
+        mainPage.getChildren().addAll(text, line1, line2, buttonBox, charChoose);
         StackPane stack = new StackPane(backgroundChoose, mainPage);
         rootPane.getChildren().add(stack);
     }
@@ -187,6 +198,13 @@ public class Goto {
     }
 
     public static void GamePage() {
+        clear();
+        ImageView background = GetDisplay.ImageImage("BG/field.jpg",580,1000);
+
+        VBox main = new VBox();
+
+        StackPane stack = new StackPane(background, main);
+        rootPane.getChildren().add(stack);
 
     }
 }
