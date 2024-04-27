@@ -28,7 +28,6 @@ public class Goto {
     static HBox ListCharP1 = new HBox();
     static HBox ListCharP2 = new HBox();
     final static HBox CharChooseBFbutton = new HBox();
-//    final static BaseCharacter ChooseChar ;
     private static int position ;
     final static boolean[] CharChoose = new boolean[8];
     private static BaseCharacter CharBaseCharacter;
@@ -109,14 +108,14 @@ public class Goto {
         ImageView holyCat = GetDisplay.ImageImage(HC.getImg(),100,100);
         ImageView vampireCat = GetDisplay.ImageImage(VC.getImg(),100,100);
 
-        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(FC),fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        knightCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(KC),knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(NC),ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        catLoad.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(CL),catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
-        curseCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(CC),curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
-        docterCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(DC),docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
-        holyCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(HC),holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
-        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(String.valueOf(VC),vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
+        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(FC,fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        knightCat.setOnMouseClicked(event -> handleCharacterSelection(KC,knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(NC,ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
+        catLoad.setOnMouseClicked(event -> handleCharacterSelection(CL,catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
+        curseCat.setOnMouseClicked(event -> handleCharacterSelection(CC,curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
+        docterCat.setOnMouseClicked(event -> handleCharacterSelection(DC,docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
+        holyCat.setOnMouseClicked(event -> handleCharacterSelection(HC,holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
+        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(VC,vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
 
 
         line1.getChildren().addAll(fightingCat, knightCat, ninjaCat, curseCat);
@@ -145,7 +144,7 @@ public class Goto {
         nextGamebutton.setOnMouseClicked(e->GamePage());
 
 
-        final boolean[] isListCharP2 = {true};
+        final boolean[] TurnP2Choose = {true};
         button.setOnMouseClicked(event -> {
             if (CharChooseBFbutton.getChildren().isEmpty() ) {
                 System.out.println("Please select a character first.");
@@ -156,21 +155,22 @@ public class Goto {
 
                 }
                 else {
-                    if(isListCharP2[0]) {
+                    if(TurnP2Choose[0]) {
                         CharChooseBFbutton.getChildren().get(0).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
 
                         ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
-                        isListCharP2[0] = false;
+                        TurnP2Choose[0] = false;
 
 //                        GameController.getInstance().getPlayer2().add(CharBaseCharacter);
 //                        System.out.println("eiei-> " + GameController.getInstance().getPlayer2());
                     }else {
                         ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
-                        isListCharP2[0] = true;
+                        TurnP2Choose[0] = true;
+//                        GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add(handleCharacterSelection));
+//                        System.out.println("eiei-> " + GameController.getInstance().getPlayer1());
+
                     }
                     CharChoose[position] = true;
-//                GameController.getInstance().setPlayer1(GameController.getInstance().getPlayer1().add());
-//                System.out.println(GameController.getInstance().getPlayer1());
                     if(ListCharP1.getChildren().size()==3 && ListCharP2.getChildren().size()==3) {
                         buttonBox.getChildren().remove(0);
                         buttonBox.getChildren().add(nextGamebutton);
@@ -195,7 +195,7 @@ public class Goto {
     }
 
 
-    private static void handleCharacterSelection(String BaseChar ,ImageView selectedCharacter,ImageView noSelect1,ImageView noSelect2,ImageView noSelect3,ImageView noSelect4,ImageView noSelect5,ImageView noSelect6,ImageView noSelect7) {
+    private static void handleCharacterSelection(BaseCharacter BaseChar ,ImageView selectedCharacter,ImageView noSelect1,ImageView noSelect2,ImageView noSelect3,ImageView noSelect4,ImageView noSelect5,ImageView noSelect6,ImageView noSelect7) {
         ColorAdjust colorAdjust = new ColorAdjust();
         ColorAdjust NOcolorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.5);
@@ -219,32 +219,31 @@ public class Goto {
         CharChooseBFbutton.getChildren().add(charCopy);
         System.out.println(selectedCharacter);
 
-        if (BaseChar==FC.getName()) {
+        if (BaseChar.equals(FC)) {
             position=0;
         }
-        else if (BaseChar.equals(String.valueOf(KC))) {
+        else if (BaseChar.equals(KC)){
             position=1;
         }
-        else if (BaseChar.equals(String.valueOf(NC))) {
+        else if (BaseChar.equals(NC)) {
             position=2;
         }
-        else if (BaseChar.equals(String.valueOf(CL))) {
+        else if (BaseChar.equals(CL)) {
             position=3;
         }
-        else if (BaseChar.equals(String.valueOf(CC))) {
+        else if (BaseChar.equals(CC)) {
             position=4;
         }
-        else if (BaseChar.equals(String.valueOf(DC))) {
+        else if (BaseChar.equals(DC)) {
             position=5;
-        }else if (BaseChar.equals(String.valueOf(HC))) {
+        }else if (BaseChar.equals(HC)) {
             position=6;
-        }else if (BaseChar.equals(String.valueOf(VC))) {
+        }else if (BaseChar.equals(VC)) {
             position=7;
         }
         System.out.println(position);
+        System.out.println(BaseChar);
 
-        String CharBaseCharacter = BaseChar;
-        System.out.println(CharBaseCharacter);
 
     }
 
@@ -258,4 +257,5 @@ public class Goto {
         rootPane.getChildren().add(stack);
 
     }
+
 }
