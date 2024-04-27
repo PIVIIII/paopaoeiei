@@ -150,7 +150,10 @@ public class Goto {
             else {
                 System.out.println("Selected character(s):");
                 if(isListCharP2[0]) {
+<<<<<<< HEAD
                     CharChooseBFbutton.getChildren().get(0).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
+=======
+>>>>>>> 2e84183f0b51ae03ebb75f0efd6d8f6f258eadb8
                     ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
                     isListCharP2[0] = false;
                 }else {
@@ -168,11 +171,17 @@ public class Goto {
         //---------------------
 
         HBox charChoose = new HBox();
+<<<<<<< HEAD
         charChoose.getChildren().addAll(ListCharP1, ListCharP2 );
         charChoose.setAlignment(Pos.CENTER_RIGHT);
 
         charChoose.setSpacing(400);
 
+=======
+        charChoose.getChildren().addAll(ListCharP1,ListCharP2);
+        charChoose.setSpacing(200);
+
+>>>>>>> 2e84183f0b51ae03ebb75f0efd6d8f6f258eadb8
 
         mainPage.getChildren().addAll(text, line1, line2, buttonBox, charChoose);
         StackPane stack = new StackPane(backgroundChoose, mainPage);
