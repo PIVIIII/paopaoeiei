@@ -25,20 +25,40 @@ public class Goto {
 
     final static HBox CharChooseBFbutton = new HBox();
     private static int position ;
-    final static boolean[] CharChoose = new boolean[8];
+    final static boolean[] CharChoose = new boolean[16];
     private static BaseCharacter CharBaseCharacter;
     static boolean TernP2 = true;
 
     //----------------------------------------------
-    static FightingCat FC = new FightingCat(TernP2);
-    static KnightCat KC = new KnightCat(TernP2);
-    static NinjaCat NC = new NinjaCat(TernP2);
-    static CatLord CL = new CatLord(TernP2);
-    static CursedCat CC = new CursedCat(TernP2);
-    static DoctorCat DC = new DoctorCat(TernP2);
-    static HolyCat HC = new HolyCat(TernP2);
-    static VampireCat VC = new VampireCat(TernP2);
+    static FightingCat FC1 = new FightingCat(true);
+    static KnightCat KC1 = new KnightCat(true);
+    static NinjaCat NC1 = new NinjaCat(true);
+    static CatLord CL1 = new CatLord(true);
+    static CursedCat CC1 = new CursedCat(true);
+    static DoctorCat DC1 = new DoctorCat(true);
+    static HolyCat HC1 = new HolyCat(true);
+    static VampireCat VC1 = new VampireCat(true);
+    static FightingCat FC2 = new FightingCat(false);
+    static KnightCat KC2 = new KnightCat(false);
+    static NinjaCat NC2 = new NinjaCat(false);
+    static CatLord CL2 = new CatLord(false);
+    static CursedCat CC2 = new CursedCat(false);
+    static DoctorCat DC2 = new DoctorCat(false);
+    static HolyCat HC2 = new HolyCat(false);
+    static VampireCat VC2 = new VampireCat(false);
     //----------------------------------------------
+
+    static ImageView fightingCat = GetDisplay.ImageImage(FC1.getImg(),100,100);
+    static ImageView knightCat = GetDisplay.ImageImage(KC1.getImg(),100,100);
+    static ImageView ninjaCat = GetDisplay.ImageImage(NC1.getImg(),100,100);
+    static ImageView catLoad = GetDisplay.ImageImage(CL1.getImg(),100,100);
+    static ImageView curseCat = GetDisplay.ImageImage(CC1.getImg(),100,100);
+    static ImageView docterCat = GetDisplay.ImageImage(DC1.getImg(),100,100);
+    static ImageView holyCat = GetDisplay.ImageImage(HC1.getImg(),100,100);
+    static ImageView vampireCat = GetDisplay.ImageImage(VC1.getImg(),100,100);
+
+    static ImageView[] catImages = {fightingCat, knightCat, ninjaCat, catLoad, curseCat, docterCat, holyCat, vampireCat};
+    static BaseCharacter[] catCharacters = {FC1, KC1, NC1, CL1, CC1, DC1, HC1, VC1, FC2, KC2, NC2, CL2, CC2, DC2, HC2, VC2};
 
     public static void setRootPane(RootPane rootPane) {
         Goto.rootPane = rootPane;
@@ -95,27 +115,13 @@ public class Goto {
         line2.setSpacing(50);
         line2.setAlignment(Pos.CENTER);
 
-        ImageView fightingCat = GetDisplay.ImageImage(FC.getImg(),100,100);
-        ImageView knightCat = GetDisplay.ImageImage(KC.getImg(),100,100);
-        ImageView ninjaCat = GetDisplay.ImageImage(NC.getImg(),100,100);
-        ImageView catLoad = GetDisplay.ImageImage(CL.getImg(),100,100);
-        ImageView curseCat = GetDisplay.ImageImage(CC.getImg(),100,100);
-        ImageView docterCat = GetDisplay.ImageImage(DC.getImg(),100,100);
-        ImageView holyCat = GetDisplay.ImageImage(HC.getImg(),100,100);
-        ImageView vampireCat = GetDisplay.ImageImage(VC.getImg(),100,100);
+        for (int i = 0; i < 8; i++) {
+            int finalI = i;
+            catImages[i].setOnMouseClicked(event -> handleCharacterSelection(catCharacters[finalI], catImages[finalI]));
+        }
 
-        fightingCat.setOnMouseClicked(event -> handleCharacterSelection(FC,fightingCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        knightCat.setOnMouseClicked(event -> handleCharacterSelection(KC,knightCat,fightingCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        ninjaCat.setOnMouseClicked(event -> handleCharacterSelection(NC,ninjaCat,knightCat,fightingCat,catLoad,curseCat,docterCat,holyCat,vampireCat));
-        catLoad.setOnMouseClicked(event -> handleCharacterSelection(CL,catLoad,knightCat,ninjaCat,fightingCat,curseCat,docterCat,holyCat,vampireCat));
-        curseCat.setOnMouseClicked(event -> handleCharacterSelection(CC,curseCat,knightCat,ninjaCat,catLoad,fightingCat,docterCat,holyCat,vampireCat));
-        docterCat.setOnMouseClicked(event -> handleCharacterSelection(DC,docterCat,knightCat,ninjaCat,catLoad,curseCat,fightingCat,holyCat,vampireCat));
-        holyCat.setOnMouseClicked(event -> handleCharacterSelection(HC,holyCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,fightingCat,vampireCat));
-        vampireCat.setOnMouseClicked(event -> handleCharacterSelection(VC,vampireCat,knightCat,ninjaCat,catLoad,curseCat,docterCat,holyCat,fightingCat));
-
-
-        line1.getChildren().addAll(fightingCat, knightCat, ninjaCat, curseCat);
-        line2.getChildren().addAll(docterCat, holyCat, catLoad, vampireCat);
+        line1.getChildren().addAll(catImages[0], catImages[1], catImages[2], catImages[3]);
+        line2.getChildren().addAll(catImages[4], catImages[5], catImages[6], catImages[7]);
 
         //---------------------
         Button button = new Button("Choose");
@@ -147,13 +153,12 @@ public class Goto {
                 System.out.println("Please select a character first.");
             }
             else {
-                if( CharChoose[position] ){
+                if( CharChoose[position] || (TernP2 && CharChoose[position-8]) || (!TernP2 && CharChoose[position+8]) ){
                     System.out.println("Same Char Choose");
                 }
                 else {
                     if(TernP2) {
                         CharChooseBFbutton.getChildren().get(0).setNodeOrientation(NodeOrientation.RIGHT_TO_LEFT);
-
                         ListCharP2.getChildren().add(CharChooseBFbutton.getChildren().get(0));
 
                         ArrayList<BaseCharacter> player2Characters = GameController.getInstance().getPlayer1();
@@ -166,9 +171,8 @@ public class Goto {
                             GameController.getInstance().getPlayer2().add(CharBaseCharacter);
                         }
 
-                        System.out.println("eiei2-> " + GameController.getInstance().getPlayer2());
+                        System.out.println("P2-> " + GameController.getInstance().getPlayer2());
                         TernP2 = false;
-                        System.out.println(TernP2);
 
                     }else {
                         ListCharP1.getChildren().add(CharChooseBFbutton.getChildren().get(0));
@@ -182,9 +186,8 @@ public class Goto {
                         else {
                             GameController.getInstance().getPlayer1().add(CharBaseCharacter);
                         }
-                        System.out.println("eiei-> " + GameController.getInstance().getPlayer1() );
+                        System.out.println("P1-> " + GameController.getInstance().getPlayer1() );
                         TernP2 = true;
-                        System.out.println(TernP2);
                     }
                     CharChoose[position] = true;
                     if(ListCharP1.getChildren().size()==3 && ListCharP2.getChildren().size()==3) {
@@ -208,60 +211,65 @@ public class Goto {
         rootPane.getChildren().add(stack);
     }
 
-
-    private static void handleCharacterSelection(BaseCharacter BaseChar ,ImageView selectedCharacter,ImageView noSelect1,ImageView noSelect2,ImageView noSelect3,ImageView noSelect4,ImageView noSelect5,ImageView noSelect6,ImageView noSelect7) {
+    private static void handleCharacterSelection(BaseCharacter catCharacter, ImageView catImage) {
         ColorAdjust colorAdjust = new ColorAdjust();
         ColorAdjust NOcolorAdjust = new ColorAdjust();
         colorAdjust.setBrightness(-0.5);
         NOcolorAdjust.setBrightness(0);
 
-        selectedCharacter.setEffect(colorAdjust);
-        noSelect1.setEffect(NOcolorAdjust);
-        noSelect2.setEffect(NOcolorAdjust);
-        noSelect3.setEffect(NOcolorAdjust);
-        noSelect4.setEffect(NOcolorAdjust);
-        noSelect5.setEffect(NOcolorAdjust);
-        noSelect6.setEffect(NOcolorAdjust);
-        noSelect7.setEffect(NOcolorAdjust);
+        for (int i = 0; i < 8; i++) {
+            int finalII = i;
+            if( catImages[finalII] == catImage ) {
+                catImage.setEffect(colorAdjust);
+            }
+            else {
+                catImages[finalII].setEffect(NOcolorAdjust);
+            }
+        }
 
         ImageView charCopy = new ImageView();
-        charCopy.setImage(selectedCharacter.getImage());
-        charCopy.setFitHeight(selectedCharacter.getFitHeight());
-        charCopy.setFitWidth(selectedCharacter.getFitWidth());
+        charCopy.setImage(catImage.getImage());
+        charCopy.setFitHeight(catImage.getFitHeight());
+        charCopy.setFitWidth(catImage.getFitWidth());
 
         CharChooseBFbutton.getChildren().clear();
         CharChooseBFbutton.getChildren().add(charCopy);
-        System.out.println(selectedCharacter);
+        System.out.println(catImage);
 
-        if (BaseChar.equals(FC)) {
-            position=0;
-        }
-        else if (BaseChar.equals(KC)){
-            position=1;
-        }
-        else if (BaseChar.equals(NC)) {
-            position=2;
-        }
-        else if (BaseChar.equals(CL)) {
-            position=3;
-        }
-        else if (BaseChar.equals(CC)) {
-            position=4;
-        }
-        else if (BaseChar.equals(DC)) {
-            position=5;
-        }else if (BaseChar.equals(HC)) {
-            position=6;
-        }else if (BaseChar.equals(VC)) {
-            position=7;
-        }
-//        System.out.println(position);
-//        System.out.println(BaseChar);
-
-        CharBaseCharacter = BaseChar;
+        CharBaseCharacter = catCharacter;
         System.out.println(CharBaseCharacter);
 
+        if (catCharacter.equals(FC1)) {
+            position=0;
+        }
+        else if (catCharacter.equals(KC1)){
+            position=1;
+        }
+        else if (catCharacter.equals(NC1)) {
+            position=2;
+        }
+        else if (catCharacter.equals(CL1)) {
+            position=3;
+        }
+        else if (catCharacter.equals(CC1)) {
+            position=4;
+        }
+        else if (catCharacter.equals(DC1)) {
+            position=5;
+        }else if (catCharacter.equals(HC1)) {
+            position=6;
+        }else if (catCharacter.equals(VC1)) {
+            position=7;
+        }
+
+        if(TernP2) {
+            position = position+8;
+        }
+
+        System.out.println("position -> " + position);
+
     }
+
 
     public static void GamePage() {
         clear();
